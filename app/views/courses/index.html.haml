@@ -1,0 +1,28 @@
+%table{style:'margin: auto; width:85%'}
+
+  %thead
+    %th{colspan: 6}
+      %h1.center-text Courses
+
+  %tr
+    %th Name
+    %th Description
+    %th Price
+    %th Teacher
+    %th Course image
+    %th
+
+  - @courses.each do |course|
+    %tr.center-text
+      %td= link_to course.name, course
+      %td= course.description
+      %td= course.price
+      %td= course.teacher_id
+      %td= course.course_image
+      %td
+        = link_to 'Edit', edit_course_path(course)
+        = link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
+  
+  %tr
+    %td.center-text{colspan: 6}
+      = link_to 'New Course', new_course_path

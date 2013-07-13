@@ -1,0 +1,21 @@
+%table{style:'margin: auto; width:85%'}
+
+  %thead
+    %th{colspan:2}
+      %h1.center-text Teachers
+
+  %tr
+    %th Name
+    %th
+
+
+  - @teachers.each do |teacher|
+    %tr.center-text
+      %td= link_to teacher.name, teacher
+      %td
+        = link_to 'Edit', edit_teacher_path(teacher)
+        = link_to 'Destroy', teacher, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %tr
+    %td.center-text{colspan:2}
+      = link_to 'New Teacher', new_teacher_path

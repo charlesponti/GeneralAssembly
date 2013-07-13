@@ -1,0 +1,37 @@
+%nav.top-bar
+  %ul.title-area
+    %li.name 
+      %h1
+        %a= link_to 'General Assembly', '/'
+  %section.top-bar-section
+    %ul.left
+      %li.divider
+      %li
+        %a= link_to 'Teachers', '/teachers'
+      %li.divider
+      %li
+        %a= link_to 'Students', '/students'
+      %li.divider
+      %li
+        %a= link_to 'Rooms', '/rooms'
+      %li.divider
+      %li
+        %a= link_to 'Courses', '/courses'
+      %li.divider
+      %li
+        %a= link_to 'Schedules', '/schedules'
+    %ul.right
+      %li.divider
+      %li.has-dropdown
+        %a Meow
+        %ul.dropdown.log-in
+          %form.custom
+            %h3 Log-In
+            %label{for: 'username'} Username:
+            %input{type:'text', name: 'username'}
+            %br
+            %label{for: 'password'} Password:
+            %input{type:'password', name: 'password'}
+            %br
+            %input{type:'submit', value:'Log In'}
+          

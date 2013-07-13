@@ -1,0 +1,21 @@
+%table{style:'margin: auto; width:65%'}
+  %thead
+    %th{colspan: 3}
+      %h1.center-text Rooms
+
+  %tr
+    %th Name
+    %th Capacity
+    %th
+
+  - @rooms.each do |room|
+    %tr.center-text
+      %td= link_to room.name, room
+      %td= room.capacity
+      %td
+        = link_to 'Edit', edit_room_path(room)
+        = link_to 'Destroy', room, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+  %tr
+    %td.center-text{colspan:3}
+      = link_to 'New Room', new_room_path, class:'button'

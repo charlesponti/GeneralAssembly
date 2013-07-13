@@ -1,0 +1,8 @@
+%p#notice= notice
+
+%h2.center-text= @room.name
+%p.center-text
+  %b Capacity:
+  = @room.capacity
+
+= render 'schedules'

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @student.name
+%p
+  %b Dob:
+  = @student.dob
+%p
+  %b Address:
+  = @student.address
+%p
+  %b Student image:
+  = @student.student_image
+%p
+  %b Balance:
+  = @student.balance
+
+= link_to 'Edit', edit_student_path(@student)
+\|
+= link_to 'Back', students_path

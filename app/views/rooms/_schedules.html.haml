@@ -1,0 +1,20 @@
+%table{style: 'width:100%;'}
+  %thead
+    %th{colspan: 3}
+      %h2.center-text Schedule
+
+  %tr
+    %th Course
+    %th Day
+    %th Times
+
+  - @schedules.each do |s|
+    %tr
+      %td= s.course.name
+      %td= s.time_slot.day
+      %td= s.print_times
+
+  %tr
+    %td.center-text{colspan: 3}
+      = link_to 'Edit', edit_room_path(@room)
+      = link_to 'Back', rooms_path
