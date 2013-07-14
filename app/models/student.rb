@@ -7,24 +7,23 @@ class Student < ActiveRecord::Base
   validates_presence_of :name, :address, :email
   
   def current_schedule
-    self.courses.map do |x| 
-      x.schedules.map do |i|
-        i.get_times.slotcode 
-      end
-    end
+    (self.courses.map { |x| x.slotcodes }).flatten
   end
   
   def booked? course
-    self.courses.include? course
+    true if self.courses.include? course
   end
 
   def add_course course
-    c = course
-    if !(booked? c) && (self.current_schedule - c.time_slots).empty? && !(c.full?)
-      self.course << c
-      self.balance += c.price
+    compare = (self.current_schedule - course.slotcodes).length
+    if self.current_schedule.length != compare
+      # self.course << c
+      # self.balance += c.price
+      # self.save
+      # c.seats -= 1
+      # c.save
+      true
     end
-    c.seats -= 1
-    c.save
+    false
   end
 end

@@ -22,16 +22,19 @@
         %a= link_to 'Schedules', '/schedules'
     %ul.right
       %li.divider
-      %li.has-dropdown
-        %a Meow
-        %ul.dropdown.log-in
-          %form.custom
-            %h3 Log-In
-            %label{for: 'username'} Username:
-            %input{type:'text', name: 'username'}
-            %br
-            %label{for: 'password'} Password:
-            %input{type:'password', name: 'password'}
-            %br
-            %input{type:'submit', value:'Log In'}
+      - if current_user
+        %li
+          = link_to 'Log Out', '/logout'
+      - else
+        %li.has-dropdown
+          %a Log In
+          %ul.dropdown.log-in
+            = form_tag sessions_path do
+              = label_tag :username
+              = text_field_tag :username
+
+              = label_tag :password
+              = text_field_tag :password
+              %br
+              = submit_tag 'Log In', class: 'btn'
           

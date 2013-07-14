@@ -50,7 +50,11 @@ class CoursesController < ApplicationController
   end
   
   def sign_up
-    current_user.add_course @course
+    if current_user.add_course Course.find(params[:id])
+      redirect_to '/', notice: "You can sign up for this course!" 
+    else
+      redirect_to '/teachers', notice: "You cannot sign up for this course!"
+    end
   end
   
   private

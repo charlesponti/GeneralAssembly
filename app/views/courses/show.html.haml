@@ -13,7 +13,7 @@
 
 %p.center-text
   %b Price:
-  = @course.price
+  = number_to_currency @course.price
 
 %table{style:'margin: auto; width:60%;'}
   %thead

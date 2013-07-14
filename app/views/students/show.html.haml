@@ -1,21 +1,42 @@
 %p#notice= notice
 
-%p
-  %b Name:
-  = @student.name
+%h2.center-text= @student.name
+
+= @student.student_image
+
 %p
   %b Dob:
   = @student.dob
 %p
   %b Address:
   = @student.address
-%p
-  %b Student image:
-  = @student.student_image
+
 %p
   %b Balance:
-  = @student.balance
+  = number_to_currency @student.balance
 
-= link_to 'Edit', edit_student_path(@student)
-\|
-= link_to 'Back', students_path
+%p 
+  Schedule
+  - @student.courses.each do |course|
+    %p
+      = course.name
+    - course.schedules.each do |schedule|
+      %p
+        = schedule.time_slot.day
+        = schedule.print_times
+%table
+  %thead
+    %th
+      %h2 Classes
+  %tr
+    %th Monday
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+  %tr
+    %td
+      - 
+
+= link_to 'Edit', edit_student_path(@student), class:'button'
+= link_to 'Back', students_path, class:'button'
