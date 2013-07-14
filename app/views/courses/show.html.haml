@@ -9,29 +9,16 @@
 
 %p.center-text
   %b Teacher:
-  = @course.get_teacher.name
+  = @course.teacher.name
 
 %p.center-text
   %b Price:
   = number_to_currency @course.price
 
-%table{style:'margin: auto; width:60%;'}
-  %thead
-    %th{colspan:2}
-      %h2.center-text Schedule
+= render 'schedule'
 
-  %tr
-    %th Day
-    %th Times
-
-  - @course.schedules.each do |s|
-    %tr.center-text
-      %td= s.time_slot.day
-      %td= s.print_times
-  
-  %tr
-    %td.center-text{colspan:2}
-      / = link_to 'Edit', edit_course_path(@course), class:'tiny button'
-      - if !(@course.full?)
-        = link_to 'Sign Up', "/signup/#{@course.id}", class:'tiny button'
-      = link_to 'Back', courses_path, class:'tiny button'
+/ = link_to 'Edit', edit_course_path(@course), class:'tiny button'
+%p.center-text
+  - if !(@course.full?)
+    = link_to 'Sign Up', "/signup/#{@course.id}", class:'tiny button'
+  = link_to 'Back', courses_path, class:'tiny button'

@@ -16,14 +16,14 @@ class Student < ActiveRecord::Base
 
   def add_course course
     compare = (self.current_schedule - course.slotcodes).length
-    if self.current_schedule.length != compare
-      # self.course << c
-      # self.balance += c.price
-      # self.save
-      # c.seats -= 1
-      # c.save
-      true
+    if self.current_schedule.length == compare
+      self.courses << course
+      self.balance += course.price
+      self.save
+      course.seats -= 1
+      course.save
+    else
+      false
     end
-    false
   end
 end

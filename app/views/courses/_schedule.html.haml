@@ -1,0 +1,27 @@
+%table{style:'margin:auto'}
+  %thead
+    %th{colspan: 5}
+      %h2.center-text Schedule
+
+  %tr
+    %th Monday
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+  %tr
+    %td
+      - @course.times_on('Monday').each do |i|
+        %p= "#{i.print_times} #{@course.room.name}"
+    %td
+      - @course.times_on('Tuesday').each do |i|
+        %p= "#{i.print_times} #{@course.room.name}"
+    %td
+      - @course.times_on('Wednesday').each do |i|
+        %p= "#{i.print_times} #{@course.room.name}"
+    %td
+      - @course.times_on('Thursday').each do |i|
+        %p= "#{i.print_times} #{@course.room.name}"
+    %td
+      - @course.times_on('Friday').each do |i|
+        %p= "#{i.print_times} #{@course.room.name}"
