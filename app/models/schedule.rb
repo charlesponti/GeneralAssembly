@@ -10,7 +10,7 @@ class Schedule < ActiveRecord::Base
   end
 
   def print_times
-    "#{self.time_slot.start_time.strftime('%H:%M')} - #{self  .time_slot.end_time.strftime('%H:%M')}"
+    "#{self.time_slot.start_time.strftime('%H:%M')} - #{self.time_slot.end_time.strftime('%H:%M')}"
   end
 
 end

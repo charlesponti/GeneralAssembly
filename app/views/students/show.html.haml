@@ -7,6 +7,7 @@
 %p
   %b Dob:
   = @student.dob
+
 %p
   %b Address:
   = @student.address
@@ -15,28 +16,7 @@
   %b Balance:
   = number_to_currency @student.balance
 
-%p 
-  Schedule
-  - @student.courses.each do |course|
-    %p
-      = course.name
-    - course.schedules.each do |schedule|
-      %p
-        = schedule.time_slot.day
-        = schedule.print_times
-%table
-  %thead
-    %th
-      %h2 Classes
-  %tr
-    %th Monday
-    %th Tuesday
-    %th Wednesday
-    %th Thursday
-    %th Friday
-  %tr
-    %td
-      - 
+= render 'schedule'
 
 = link_to 'Edit', edit_student_path(@student), class:'button'
 = link_to 'Back', students_path, class:'button'
