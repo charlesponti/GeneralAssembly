@@ -1,25 +1,47 @@
-= form_for @course do |f|
+= nested_form_for @course do |f|
   - if @course.errors.any?
     #error_explanation
       %h2= "#{pluralize(@course.errors.count, "error")} prohibited this course from being saved:"
       %ul
         - @course.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :price
-    = f.text_field :price
-  .field
-    = f.label :teacher_id
-    = f.number_field :teacher_id
-  .field
-    = f.label :course_image
-    = f.text_field :course_image
-  .actions
-    = f.submit 'Save'
+  .large-6.columns
+    .field
+      = f.label :name
+      = f.text_field :name
+    .field
+      = f.label :description
+      = f.text_area :description
+    .field
+      = f.label :price
+      = f.text_field :price
+    .field
+      = f.label :teacher_id
+      = f.number_field :teacher_id
+    .field
+      = f.fields_for :room do |room|
+        = room.label :room_id
+        = room.collection_select :room_id, Room.all, :id, :name
+  .large-6.columns
+    .field
+      %label{for: 'start_date'} Start Date:
+      %input{type:'date', name:'start_date'}
+      %label{for: 'end_date'} End Date:
+      %input{type:'date', name:'end_date'}
+    .time_slots
+      .field.time_slot
+        = label_tag :time_slot
+        = select_tag 'times[][time_slot_id]', options_from_collection_for_select(TimeSlot.all, :id, :day_and_time)
+        %br
+        %br
+      / = f.fields_for :schedules do |time|
+      /   = time.label :time_slot_id
+      /   = time.collection_select :time_slot_id, TimeSlot.all, :id, :day_and_time
+      /   = time.link_to_remove 'Remove!'
+      / = f.link_to_add 'Add!', :schedules
+    %a#add.tiny.button Add Time Slot
+    .field
+      = f.label :course_image
+      = f.text_field :course_image
+    .actions
+      = f.submit 'Save'

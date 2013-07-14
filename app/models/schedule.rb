@@ -5,7 +5,7 @@ class Schedule < ActiveRecord::Base
 
   validates_presence_of :room_id, :course_id, :start_date, :end_date, :time_slot
 
-  def get_times
+  def slotcode
     TimeSlot.find(self.time_slot_id).slotcode
   end
 

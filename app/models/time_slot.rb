@@ -5,4 +5,9 @@ class TimeSlot < ActiveRecord::Base
   def print_times
     "#{self.start_time.strftime('%H:%M')} - #{self.end_time.strftime('%H:%M')}"
   end
+
+  def day_and_time
+    "#{self.day} :   #{self.start_time.strftime('%H:%M')} - #{self.end_time.strftime('%H:%M')}"
+  end
+
 end

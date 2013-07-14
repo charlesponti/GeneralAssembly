@@ -1,25 +1,24 @@
 class Course < ActiveRecord::Base
+  belongs_to :teacher
+  belongs_to :room
+
   has_many :students_courses
   has_many :students, through: :students_courses
   
-  belongs_to :teacher
-  
   has_many :schedules
-  belongs_to :room
+  has_many :time_slots, through: :schedules
   
   validates :name, presence: true, uniqueness: true
   validates_presence_of :description, :price
-  
-  def times # Returns array of TimeSlot objects
-    self.schedules.map { |x| x.time_slot }
-  end
+
+  accepts_nested_attributes_for :schedules
   
   def times_on day # Returns array of TimeSlot objects on specified day of week
-    self.times.reject { |x| !(x.day == day )}
+    self.time_slots.reject { |x| !(x.day == day )}
   end
 
   def slotcodes # Returns array of all TimeSlot slotcodes
-    self.schedules.map { |x| x.get_times }
+    self.schedules.map { |x| x.slotcode }
   end
 
   def full?

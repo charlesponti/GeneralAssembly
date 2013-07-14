@@ -17,19 +17,38 @@ class CoursesController < ApplicationController
 
   def create
     @course = Course.new(course_params)
-
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @course }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
+    room = Room.find(params[:course][:room][:room_id].to_i)
+    @course.seats, @course.room_id = room.capacity, room.id
+    scheds = []
+    params[:times].each do |time|
+      scheds << Schedule.new(time_slot_id: time[:time_slot_id], room_id: room.id, 
+        start_date: params[:start_date], end_date: params[:end_date] )
     end
+    compare = (@course.room.bookings - (scheds.map { |x| x.slotcode})).length
+    if @course.room.bookings.length == compare
+      if @course.save
+        scheds.each do |i| 
+          i.course_id = @course.id
+          i.save
+        end
+        redirect_to @course, notice: 'Course was successfully created.'
+      end
+    else
+      redirect_to action:'new', notice: 'The dates you selected are taken.'
+    end
+    # respond_to do |format|
+    #   if @course.save
+    #     format.html { redirect_to @course, notice: 'Course was successfully created.' }
+    #     format.json { render action: 'show', status: :created, location: @course }
+    #   else
+    #     format.html { render action: 'new' }
+    #     format.json { render json: @course.errors, status: :unprocessable_entity }
+    #   end
+    # end
   end
 
   def update
+    @course.seats = params[:room][:capacity]
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -50,10 +69,11 @@ class CoursesController < ApplicationController
   end
   
   def sign_up
-    if current_user.add_course Course.find(params[:id])
-      redirect_to '/students/1', notice: "You can sign up for this course!" 
+    @course = Course.find(params[:id])
+    if current_user.add_course @course
+      redirect_to '/students/1', notice: "You have signed up for #{@course.name}!" 
     else
-      redirect_to '/teachers', notice: "You cannot sign up for this course!"
+      redirect_to '/teachers', notice: "You cannot fit #{@course.name} into your schedule!"
     end
   end
   
@@ -63,6 +83,6 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name, :description, :price, :teacher_id, :course_image, :room_id)
+      params.require(:course).permit(:name, :description, :price, :teacher_id, :course_image, :room_id, times: :time_slot_id)
     end
 end

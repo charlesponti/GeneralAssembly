@@ -14,6 +14,15 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require jquery_nested_form
 //= require_tree .
 
 $(document).foundation();
+
+$(document).ready(function() {
+
+  $('#add').on('click', function() {
+    $('.time_slots').append( $('.field.time_slot').clone() );
+  });
+
+});
