@@ -48,7 +48,14 @@ class CoursesController < ApplicationController
   end
 
   def update
-    @course.seats = params[:room][:capacity]
+    params[:course][:schedules_attributes].each do |sc|
+      if sc[1][:_destroy] == 'false'
+        sc[1][:room_id] = params[:course][:room][:room_id]
+        sc[1][:start_date] = params[:start_date]
+        sc[1][:end_date] = params[:end_date]
+      end
+    end
+    binding.pry
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -83,6 +90,7 @@ class CoursesController < ApplicationController
     end
 
     def course_params
-      params.require(:course).permit(:name, :description, :price, :teacher_id, :course_image, :room_id, times: :time_slot_id)
+      params.require(:course).permit(:name, :description, :price, :teacher_id, :course_image, :room_id, 
+        times: :time_slot_id, schedules_attributes: [:room_id, :start_date, :end_date, :time_slot_id, :id, :_destroy])
     end
 end

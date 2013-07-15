@@ -1,5 +1,7 @@
 GeneralAssembly::Application.routes.draw do
   
+  resources :users
+
   root "static#home"
   get '/about', to: "static#about"
   get '/contact', to:"static#contact"

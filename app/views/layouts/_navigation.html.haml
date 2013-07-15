@@ -23,6 +23,10 @@
     %ul.right
       %li.divider
       - if current_user
+        %li.divider
+        %li
+          %a= "Logged in as #{current_user.name}"
+        %li.divider
         %li
           = link_to 'Log Out', '/logout'
       - else

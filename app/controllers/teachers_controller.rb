@@ -1,28 +1,22 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update, :destroy]
 
-  # GET /teachers
-  # GET /teachers.json
   def index
     @teachers = Teacher.all
   end
 
-  # GET /teachers/1
-  # GET /teachers/1.json
   def show
   end
 
-  # GET /teachers/new
   def new
     @teacher = Teacher.new
+    authorize! :manage, :all
   end
 
-  # GET /teachers/1/edit
   def edit
+    authorize! :edit, @teacher
   end
 
-  # POST /teachers
-  # POST /teachers.json
   def create
     @teacher = Teacher.new(teacher_params)
 
@@ -37,8 +31,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /teachers/1
-  # PATCH/PUT /teachers/1.json
   def update
     respond_to do |format|
       if @teacher.update(teacher_params)
@@ -51,8 +43,6 @@ class TeachersController < ApplicationController
     end
   end
 
-  # DELETE /teachers/1
-  # DELETE /teachers/1.json
   def destroy
     @teacher.destroy
     respond_to do |format|
@@ -62,12 +52,10 @@ class TeachersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_teacher
       @teacher = Teacher.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def teacher_params
       params.require(:teacher).permit(:name, :email, :address, :password, :password_confirmation)
     end

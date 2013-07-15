@@ -1,9 +1,11 @@
 class Course < ActiveRecord::Base
-  belongs_to :teacher
+  belongs_to :teacher, class_name: 'User'
   belongs_to :room
 
   has_many :students_courses
-  has_many :students, through: :students_courses
+  #has_many :students, through: :students_courses
+
+  has_many :users, through: :students_courses, class_name: 'User'
   
   has_many :schedules
   has_many :time_slots, through: :schedules
@@ -11,13 +13,13 @@ class Course < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validates_presence_of :description, :price
 
-  accepts_nested_attributes_for :schedules
+  accepts_nested_attributes_for :schedules, allow_destroy: true
   
   def times_on day # Returns array of TimeSlot objects on specified day of week
     self.time_slots.reject { |x| !(x.day == day )}
   end
 
-  def slotcodes # Returns array of all TimeSlot slotcodes
+  def slotcodes # Returns array of TimeSlot slotcodes for course
     self.schedules.map { |x| x.slotcode }
   end
 

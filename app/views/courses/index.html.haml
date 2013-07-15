@@ -19,10 +19,11 @@
       %td= course.price
       %td= course.teacher_id
       %td= course.course_image
-      %td
-        = link_to 'Edit', edit_course_path(course)
-        = link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - if can? :manage, :all
+        %td
+          = link_to 'Edit', edit_course_path(course)
+          = link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
   
-  %tr
-    %td.center-text{colspan: 6}
-      = link_to 'New Course', new_course_path
+        %tr
+          %td.center-text{colspan: 6}
+            = link_to 'New Course', new_course_path

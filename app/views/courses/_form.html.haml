@@ -28,18 +28,8 @@
       %input{type:'date', name:'start_date'}
       %label{for: 'end_date'} End Date:
       %input{type:'date', name:'end_date'}
-    .time_slots
-      .field.time_slot
-        = label_tag :time_slot
-        = select_tag 'times[][time_slot_id]', options_from_collection_for_select(TimeSlot.all, :id, :day_and_time)
-        %br
-        %br
-      / = f.fields_for :schedules do |time|
-      /   = time.label :time_slot_id
-      /   = time.collection_select :time_slot_id, TimeSlot.all, :id, :day_and_time
-      /   = time.link_to_remove 'Remove!'
-      / = f.link_to_add 'Add!', :schedules
-    %a#add.tiny.button Add Time Slot
+    .field
+      = render 'schedules_fields', f: f
     .field
       = f.label :course_image
       = f.text_field :course_image

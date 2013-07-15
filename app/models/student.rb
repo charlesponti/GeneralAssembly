@@ -1,4 +1,5 @@
 class Student < ActiveRecord::Base
+#class Student < User
   has_secure_password
 
   has_many :students_courses
