@@ -1,0 +1,25 @@
+%h2.center-text Account Dashboard
+
+- if @user.balance > 0
+  %p.center-text
+    %b Current Balance Due:
+    = number_to_currency @user.balance
+
+%br
+%br
+%br
+
+- if @courses && @courses.count > 0
+  .my_schedule.center-text
+    %h2 Current Schedule
+    - @courses.each do |x|
+      = render 'courses/schedule', schedules: x.schedules, title: x.name
+      - if current_user.role == 'student'
+        %p.center-text= link_to 'Drop Course', "courses/#{x.id}/drop", class:'tiny button'
+      %br
+      %br
+
+%p.center-text
+  = link_to 'Edit Account', edit_user_path(@user), class:'button'
+  = link_to 'Back', "/#{@user.role}s", class:'button'
+

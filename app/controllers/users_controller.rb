@@ -56,7 +56,6 @@ class UsersController < ApplicationController
   def dashboard
     @user = User.find(current_user.id)
     set_courses
-    render :show
   end
 
   def students

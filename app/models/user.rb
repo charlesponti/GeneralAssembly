@@ -31,8 +31,14 @@ class User < ActiveRecord::Base
 
   def add_course course
       self.courses << course
-      self.update_balance(:+ , course_price).save
-      course.update_seats_available
+      self.update_balance(:+ , course.price).save
+      course.remove_seats 1
+  end
+
+  def drop_course course
+      self.courses.delete course
+      self.update_balance(:- , course.price).save
+      course.add_seats 1
   end
 
   def can_add_course course

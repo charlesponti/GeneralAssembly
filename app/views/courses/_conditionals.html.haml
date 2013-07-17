@@ -1,7 +1,7 @@
-- if current_user && (@course.teacher_id == current_user.id) || (can? :manage, :all)
+- if current_user && (course.teacher_id == current_user.id) || (can? :manage, :all)
   = render 'students'
 
-- unless !(current_user.can_add_course(@course))
+- unless !(current_user.can_add_course(course))
   %p.center-text 
     %br
     %br
@@ -10,8 +10,8 @@
 %p.center-text
   %br
   %br
-  - unless @course.full? && current_user
-    = link_to 'Sign Up', "/signup/#{@course.id}", class:'button'
+  - unless course.full? && current_user
+    = link_to 'Sign Up', "/signup/#{course.id}", class:'button'
   - else
     = link_to 'Apply', '/apply', class:'button'
   = link_to 'Back', courses_path, class:'button'

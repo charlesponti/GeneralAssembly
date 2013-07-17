@@ -3,6 +3,11 @@ class CoursesController < ApplicationController
 
   def index
     @courses = Course.all
+    render :guest_index if !current_user
+  end
+
+  def guest_index
+    @courses = Course.all
   end
 
   def show
@@ -61,6 +66,18 @@ class CoursesController < ApplicationController
       redirect_to @course, notice: "You cannot fit #{@course.name} into your schedule!"
     end
   end
+
+  def drop_student
+    @course = Course.find(params[:id])
+    if current_user.booked? @course
+      current_user.drop_course @course
+      redirect_to '/dashboard', notice: "You have signed up for #{@course.name}!" 
+    else
+      redirect_to @course, notice: "You cannot fit #{@course.name} into your schedule!"
+    end
+  end
+
+
   
   private
     def set_course

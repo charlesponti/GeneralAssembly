@@ -27,8 +27,13 @@ class Course < ActiveRecord::Base
     self.schedules.map(&:slotcode)
   end
 
-  def update_seats_available
+  def remove_seats seats
     seats -= 1
+    self.save
+  end
+
+  def add_seats seats
+    seats += 1
     self.save
   end
 
