@@ -21,13 +21,9 @@
   .field
     = f.label :bio
     = f.text_area :bio
-  / .field
-  /   = f.check_box :role, 'student'
-  /   = f.check_box :role, 'teacher'
-  /   = f.check_box :role, 'admin'
   .field
     = f.label :user_image
-    = f.text_field :user_image
+    = f.file_field :user_image
   .field
     = f.label :username
     = f.text_field :username
@@ -37,5 +33,15 @@
   .field
     = f.label :password_confirmation
     = f.text_field :password_confirmation
-  .actions
-    = f.submit 'Save'
+  - if current_user && current_user.role =='admin'
+    .field
+      %label{for:'user[role'} Role:
+      %select{name:'user[role]'}
+        %option{value:'student'} Student
+        %option{value:'teacher'} Teacher
+        %option{value:'admin'} Admin
+
+  .actions.center-text
+    %br
+    %br
+    = f.submit 'Apply', class:'button'

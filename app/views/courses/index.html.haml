@@ -21,10 +21,10 @@
       %td= course.course_image
       - if can? :manage, :all
         %td
-          = link_to 'Edit', edit_course_path(course)
-          = link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }
+          = link_to 'Edit', edit_course_path(course), class:'tiny button'
+          = link_to 'Destroy', course, :method => :delete, :data => { :confirm => 'Are you sure?' }, class:'tiny button'
   
   - if can? :manage, :all
     %tr
       %td.center-text{colspan: 6}
-        = link_to 'New Course', new_course_path
+        = link_to 'New Course', new_course_path, class:'button'

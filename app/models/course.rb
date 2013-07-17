@@ -12,6 +12,8 @@ class Course < ActiveRecord::Base
   validates_presence_of :description, :price
 
   accepts_nested_attributes_for :schedules, allow_destroy: true
+
+  mount_uploader :course_image, CourseImageUploader
   
   def students
     self.users
@@ -25,8 +27,14 @@ class Course < ActiveRecord::Base
     self.schedules.map(&:slotcode)
   end
 
+  def update_seats_available
+    seats -= 1
+    self.save
+  end
+
   def full?
     self.seats == 0
   end
+
 
 end

@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class UserImageUploader < CarrierWave::Uploader::Base
+class CourseImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   include CarrierWave::RMagick
@@ -31,6 +31,7 @@ class UserImageUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  # Create different versions of your uploaded files:
   version :thumb do
     process :resize_to_fill => [100, 100]
   end
@@ -38,7 +39,9 @@ class UserImageUploader < CarrierWave::Uploader::Base
   version :detail do
     process :resize_to_fill => [400, 400]
   end
-  
+
+  # Add a white list of extensions which are allowed to be uploaded.
+  # For images you might use something like this:
   def extension_white_list
     %w(jpg jpeg gif png)
   end

@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
   scope :students, -> { where(role: 'student') }
 
   validates_presence_of :name, :email, :address, :bio, :username
+
+  mount_uploader :user_image, UserImageUploader
   
   def teaching
     Course.where(teacher_id: self.id)
@@ -19,20 +21,22 @@ class User < ActiveRecord::Base
   end
   
   def booked? course
-    self.courses.include? course ? true : false
+    self.courses.include? course
+  end
+
+  def update_balance operator,  how_much
+    balance.send(operator, how_much)
+    self
   end
 
   def add_course course
-    compare = (self.current_schedule - course.slotcodes).length
-    if self.current_schedule.length == compare
       self.courses << course
-      self.balance += course.price
-      self.save
-      course.seats -= 1
-      course.save
-    else
-      false
-    end
+      self.update_balance(:+ , course_price).save
+      course.update_seats_available
+  end
+
+  def can_add_course course
+    errors.add(:courses, "you can't subscribe for that course")  unless self.current_schedule.length == (self.current_schedule - course.slotcodes).length
   end
 
 end

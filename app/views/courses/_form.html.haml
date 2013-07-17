@@ -18,14 +18,9 @@
     .field
       = f.label :teacher_id
       = f.collection_select :teacher_id, User.teachers, :id, :name
-    / .field
-    /   %label{for: 'start_date'} Start Date:
-    /   %input{type:'date', name:'start_date'}
-    /   %label{for: 'end_date'} End Date:
-    /   %input{type:'date', name:'end_date'}
     .field
       = f.label :course_image
-      = f.text_field :course_image
+      = f.file_field :course_image
   .large-6.columns{style:'height:490px;overflow:auto'}
     .field
       = render 'schedules_fields', f: f

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource only: [:index, :new, :create, :destroy]
+  load_and_authorize_resource only: [:index, :create, :destroy]
 
   def index
     @users = User.all
@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     end
 
     def set_courses
-      @courses = case current_user.role
+      @courses = case @user.role
         when 'student' then @user.courses
         when 'teacher' then @user.teaching
       end

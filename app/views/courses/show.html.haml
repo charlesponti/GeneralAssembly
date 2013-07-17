@@ -1,6 +1,7 @@
 %h1.center-text= @course.name
 
-= @course.course_image
+%p.center-text
+  = image_tag @course.course_image
 
 
 %h3.center-text Dates:
@@ -19,11 +20,14 @@
 
 = render 'schedule', schedules: @course.schedules, title: 'Schedule'
 
-- if (@course.teacher_id == current_user.id) || (can? :manage, :all)
+- if current_user && (@course.teacher_id == current_user.id) || (can? :manage, :all)
   = render 'students'
 
-/ = link_to 'Edit', edit_course_path(@course), class:'tiny button'
 %p.center-text
-  - if !(@course.full?)
-    = link_to 'Sign Up', "/signup/#{@course.id}", class:'tiny button'
-  = link_to 'Back', courses_path, class:'tiny button'
+  %br
+  %br
+  - if !(@course.full?) && current_user && current_user.can_add_course(@course)
+    = link_to 'Sign Up', "/signup/#{@course.id}", class:'button'
+  - else
+    = link_to 'Apply', '/apply', class:'button'
+  = link_to 'Back', courses_path, class:'button'

@@ -1,23 +1,22 @@
-%p#notice= notice
-
 %h2.center-text= @user.name
 
-= @user.user_image
+%p.center-text
+  = image_tag @user.user_image, style:'height:200px;width:250px; margin:auto'
 
-%p
+%p.center-text
   %b Dob:
   = @user.dob
 
-%p
+%p.center-text
   %b Address:
   = @user.address
 
-%p
+%p.center-text
   %b Balance:
   = number_to_currency @user.balance
 
 - if can? :manage, :all
-  %p
+  %p.center-text
     %b Role:
     = @user.role
 
@@ -27,6 +26,7 @@
     %br
     %br
 
-= link_to 'Edit', edit_user_path(@user), class:'button'
-= link_to 'Back', users_path, class:'button'
+%p.center-text
+  = link_to 'Edit', edit_user_path(@user), class:'button'
+  = link_to 'Back', users_path, class:'button'
 

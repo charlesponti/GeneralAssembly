@@ -5,8 +5,9 @@ GeneralAssembly::Application.routes.draw do
   root "static#home"
   get '/about', to: "static#about"
   get '/contact', to:"static#contact"
-
+  get '/apply', to: 'users#new'
   get '/dashboard', to: "users#dashboard"
+  
 
   resources :sessions
   resources :courses

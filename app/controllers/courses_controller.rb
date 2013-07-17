@@ -16,11 +16,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
+    @course_id = @course.id
   end
 
   def create
     @course = Course.new(course_params)
-    set_schedules
     respond_to do |format|
       if @course.save
         format.html { redirect_to @course, notice: 'Course was successfully created.' }
@@ -33,7 +33,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-    #set_schedules
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: 'Course was successfully updated.' }
@@ -55,23 +54,15 @@ class CoursesController < ApplicationController
   
   def sign_up
     @course = Course.find(params[:id])
-    if current_user.add_course @course
-      redirect_to '/students/1', notice: "You have signed up for #{@course.name}!" 
+    if current_user.can_add_course @course
+      current_user.add_course @course
+      redirect_to '/dashboard', notice: "You have signed up for #{@course.name}!" 
     else
       redirect_to @course, notice: "You cannot fit #{@course.name} into your schedule!"
     end
   end
   
   private
-    def set_schedules
-      params[:course][:schedules_attributes].each do |sc|
-        if sc[1][:_destroy] == 'false'
-          sc[1][:start_date] = params[:start_date]
-          sc[1][:end_date] = params[:end_date]
-        end
-      end
-    end
-    
     def set_course
       @course = Course.find(params[:id])
     end
