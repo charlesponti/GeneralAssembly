@@ -1,0 +1,27 @@
+%table{style:'margin:auto'}
+  %thead
+    %th{colspan: 5}
+      %h2.center-text Classes
+
+  %tr
+    %th Monday
+    %th Tuesday
+    %th Wednesday
+    %th Thursday
+    %th Friday
+  %tr
+    %td
+      - (@schedules.select { |x| x.time_slot.day == 'Monday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.course.name}"
+    %td
+      - (@schedules.select { |x| x.time_slot.day == 'Tuesday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.course.name}"
+    %td
+      - (@schedules.select { |x| x.time_slot.day == 'Wednesday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.course.name}"    
+    %td
+      - (@schedules.select { |x| x.time_slot.day == 'Thursday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.course.name}"
+    %td
+      - (@schedules.select { |x| x.time_slot.day == 'Friday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.course.name}"

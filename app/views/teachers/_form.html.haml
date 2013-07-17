@@ -16,16 +16,24 @@
     = f.label :address
     = f.text_field :address
   .field
-    = f.label :teacher_image
-    = f.file_field :teacher_image
+    %label{for: 'user[dob]'} Date of Birth:
+    %input{type:'date', name:'user[dob]'}
   .field
     = f.label :bio
     = f.text_area :bio
+  .field
+    = f.label :user_image
+    = f.file_field :user_image
+  .field
+    = f.label :username
+    = f.text_field :username
   .field
     = f.label :password
     = f.password_field :password
 
     = f.label :password_confirmation
     = f.password_field :password_confirmation
+  .field
+    %input{type:'hidden', name:'user[role]', value:'teacher'}
   .actions
     = f.submit 'Save'

@@ -1,21 +1,26 @@
-%p#notice= notice
-
 %h1.center-text= @course.name
 
 = @course.course_image
 
+
+%h3.center-text Dates:
+%p.center-text= "#{@course.schedules.first.start_date.strftime('%B %-d %Y')} to #{@course.schedules.first.end_date.strftime('%B %-d %Y')}"
+
 %h3.center-text Description:
 %p.center-text= @course.description
 
-%p.center-text
-  %b Teacher:
-  = @course.teacher.name
 
-%p.center-text
-  %b Price:
-  = number_to_currency @course.price
+%h3.center-text Teacher:
+%p.center-text= @course.teacher.name
 
-= render 'schedule'
+
+%h3.center-text Price:
+%p.center-text= number_to_currency @course.price
+
+= render 'schedule', schedules: @course.schedules, title: 'Schedule'
+
+- if (@course.teacher_id == current_user.id) || (can? :manage, :all)
+  = render 'students'
 
 / = link_to 'Edit', edit_course_path(@course), class:'tiny button'
 %p.center-text

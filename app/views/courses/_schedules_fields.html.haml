@@ -1,0 +1,14 @@
+= f.fields_for :schedules do |time|
+  = time.label :start_date
+  = time.date_field :start_date
+  = time.label :end_date
+  = time.date_field :end_date
+  = time.hidden_field :course_id, value: @course_id
+  = time.label :time_slot_id
+  = time.collection_select :time_slot_id, TimeSlot.all, :id, :day_and_time
+  = time.label :room_id
+  = time.collection_select :room_id, Room.all, :id, :name
+  = time.link_to_remove 'Remove!'
+  %br
+  %br
+= f.link_to_add 'Add!', :schedules

@@ -24,9 +24,17 @@ gem 'nested_form'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
+gem "fog", "~> 1.3.1"
 gem 'carrierwave'
 gem 'rmagick'
 gem "ransack", github: "ernie/ransack", branch: "rails-4"
+
+group :test do
+  gem 'rspec-rails'
+  gem 'database_cleaner'
+  gem 'shoulda'
+  gem 'capybara' 
+end
 
 group :doc do
   gem 'sdoc', require: false

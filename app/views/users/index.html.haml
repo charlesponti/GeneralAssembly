@@ -1,0 +1,31 @@
+%table
+  %thead
+    %th{colspan:8}
+      %h1.center-text Listing users
+
+  %tr
+    %th Name
+    %th Dob
+    %th Address
+    %th Bio
+    %th User image
+    %th Username
+    %th Role
+    %th
+
+  - @users.each do |user|
+    %tr
+      %td= link_to user.name, user
+      %td= user.dob
+      %td= user.address
+      %td= user.bio
+      %td= user.user_image
+      %td= user.username
+      %td= user.role
+      %td
+        = link_to 'Edit', edit_user_path(user), class:'tiny button'
+        = link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }, class:'tiny button'
+
+  %tr
+    %td.center-text{colspan:8}
+      = link_to 'New User', new_user_path, class:'button'

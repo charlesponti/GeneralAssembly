@@ -23,9 +23,11 @@
 
 %body
   = render 'layouts/navigation'
-
+  
   .row
     .large-12
+      - if flash
+        %p#notice= flash[:notice] || flash[:error]
       = yield
 
   = javascript_include_tag "application"

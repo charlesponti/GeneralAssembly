@@ -12,10 +12,12 @@
   - @teachers.each do |teacher|
     %tr.center-text
       %td= link_to teacher.name, teacher
-      %td
-        = link_to 'Edit', edit_teacher_path(teacher)
-        = link_to 'Destroy', teacher, :method => :delete, :data => { :confirm => 'Are you sure?' }
-
-  %tr
-    %td.center-text{colspan:2}
-      = link_to 'New Teacher', new_teacher_path
+      - if can? :manage, :all
+        %td
+          = link_to 'Edit', edit_user_path(teacher), class:'tiny button'
+          = link_to 'Destroy', teacher, :method => :delete, :data => { :confirm => 'Are you sure?' }, class:'tiny button'
+  
+  - if can? :manage, :all
+    %tr
+      %td.center-text{colspan:2}
+        = link_to 'New Teacher', new_teacher_path, class:'button'

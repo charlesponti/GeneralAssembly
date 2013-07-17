@@ -17,21 +17,17 @@
       = f.text_field :price
     .field
       = f.label :teacher_id
-      = f.number_field :teacher_id
-    .field
-      = f.fields_for :room do |room|
-        = room.label :room_id
-        = room.collection_select :room_id, Room.all, :id, :name
-  .large-6.columns
-    .field
-      %label{for: 'start_date'} Start Date:
-      %input{type:'date', name:'start_date'}
-      %label{for: 'end_date'} End Date:
-      %input{type:'date', name:'end_date'}
-    .field
-      = render 'schedules_fields', f: f
+      = f.collection_select :teacher_id, User.teachers, :id, :name
+    / .field
+    /   %label{for: 'start_date'} Start Date:
+    /   %input{type:'date', name:'start_date'}
+    /   %label{for: 'end_date'} End Date:
+    /   %input{type:'date', name:'end_date'}
     .field
       = f.label :course_image
       = f.text_field :course_image
+  .large-6.columns{style:'height:490px;overflow:auto'}
+    .field
+      = render 'schedules_fields', f: f
     .actions
       = f.submit 'Save'

@@ -1,7 +1,7 @@
 %table{style:'margin:auto'}
   %thead
     %th{colspan: 5}
-      %h2.center-text Schedule
+      %h2.center-text= title
 
   %tr
     %th Monday
@@ -11,17 +11,17 @@
     %th Friday
   %tr
     %td
-      - @course.times_on('Monday').each do |i|
-        %p= "#{i.print_times} #{@course.room.name}"
+      - (schedules.select { |x| x.time_slot.day == 'Monday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.room.name}"
     %td
-      - @course.times_on('Tuesday').each do |i|
-        %p= "#{i.print_times} #{@course.room.name}"
+      - (schedules.select { |x| x.time_slot.day == 'Tuesday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.room.name}"
     %td
-      - @course.times_on('Wednesday').each do |i|
-        %p= "#{i.print_times} #{@course.room.name}"
+      - (schedules.select { |x| x.time_slot.day == 'Wednesday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.room.name}"    
     %td
-      - @course.times_on('Thursday').each do |i|
-        %p= "#{i.print_times} #{@course.room.name}"
+      - (schedules.select { |x| x.time_slot.day == 'Thursday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.room.name}"
     %td
-      - @course.times_on('Friday').each do |i|
-        %p= "#{i.print_times} #{@course.room.name}"
+      - (schedules.select { |x| x.time_slot.day == 'Friday' }).each do |x|
+        %p= "#{x.time_slot.print_times} #{x.room.name}"

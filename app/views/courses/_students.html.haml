@@ -1,0 +1,13 @@
+%br
+%br
+%table{style:'margin:auto; width: 30%'}
+  %thead
+    %th
+      %h2.center-text Students
+  %tr
+    %th.center-text Name
+  - @course.students.each do |student|
+    %tr.center-text
+      %td= link_to student.name, student
+%br
+%br

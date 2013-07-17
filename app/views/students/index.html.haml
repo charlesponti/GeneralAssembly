@@ -17,12 +17,12 @@
       %td= link_to student.name, student
       %td= student.dob
       %td= student.address
-      %td= student.student_image
+      %td= student.user_image
       %td= student.balance
       %td
-        = link_to 'Edit', edit_student_path(student)
+        = link_to 'Edit', edit_user_path(student)
         = link_to 'Destroy', student, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
   %tr
     %td.center-text{colspan:6}
-      = link_to 'New Student', new_student_path
+      = link_to 'New Student', new_user_path
