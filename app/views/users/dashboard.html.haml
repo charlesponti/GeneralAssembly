@@ -12,8 +12,9 @@
 - if @courses && @courses.count > 0
   .my_schedule.center-text
     %h2 Current Schedule
-    - @courses.each do |x|
-      = render 'courses/schedule', schedules: x.schedules, title: x.name
+    - @courses.each do |course|
+      = render 'courses/schedule', schedules: course.schedules, title: course.name
+
       - if current_user.role == 'student'
         %p.center-text= link_to 'Drop Course', "courses/#{x.id}/drop", class:'tiny button'
       %br

@@ -2,11 +2,11 @@ class Schedule < ActiveRecord::Base
   belongs_to :room
   belongs_to :course
   belongs_to :time_slot
-  
+
   validate :room_available, on: :create
   validates_presence_of :room_id, :course_id, :start_date, :end_date, :time_slot
 
-  scope :this_week, -> { where('start_date <= :today AND end_date >= :today', today: Time.now) }
+  scope :current, -> { where('start_date <= :today AND end_date >= :today', today: Date.today) }
 
   def slotcode
     TimeSlot.find(self.time_slot_id).slotcode

@@ -9,19 +9,10 @@
     %th Wednesday
     %th Thursday
     %th Friday
+
   %tr
-    %td
-      - (schedules.select { |x| x.time_slot.day == 'Monday' }).each do |x|
-        %p= "#{x.time_slot.print_times} #{x.room.name}"
-    %td
-      - (schedules.select { |x| x.time_slot.day == 'Tuesday' }).each do |x|
-        %p= "#{x.time_slot.print_times} #{x.room.name}"
-    %td
-      - (schedules.select { |x| x.time_slot.day == 'Wednesday' }).each do |x|
-        %p= "#{x.time_slot.print_times} #{x.room.name}"    
-    %td
-      - (schedules.select { |x| x.time_slot.day == 'Thursday' }).each do |x|
-        %p= "#{x.time_slot.print_times} #{x.room.name}"
-    %td
-      - (schedules.select { |x| x.time_slot.day == 'Friday' }).each do |x|
-        %p= "#{x.time_slot.print_times} #{x.room.name}"
+    - ['Monday', 'Tuesday','Wednesday','Thursday','Friday'].each do |weekday|
+      %td
+        - (schedules.select { |x| x.time_slot.day == weekday }).each do |x|
+          = "#{x.time_slot.print_times} #{x.room.name}"
+          %br

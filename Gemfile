@@ -16,6 +16,8 @@ gem 'jquery-rails'
 gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
 gem 'zurb-foundation'
 
+gem "watu_table_builder", :require => "table_builder", :git => "git://github.com/watu/table_builder.git"
+
 gem 'turbolinks'
 
 gem 'jbuilder', '~> 1.2'
