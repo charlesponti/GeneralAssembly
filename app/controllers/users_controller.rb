@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if !current_user || !(@user.id == current_user.id)
+    unless @user.id == current_user.id
       authorize! :manage, :all
     end
   end
@@ -57,6 +57,16 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     set_courses
     render :show
+  end
+
+  def students
+    admin_only
+    @students = User.students
+  end
+
+  def teachers
+    admin_only
+    @teachers = User.teachers
   end
 
   private

@@ -4,5 +4,15 @@ class SchedulesController < ApplicationController
   def index
     @schedules = Schedule.all
   end
+  
+  def edit
+  end
 
+  def new
+  end
+
+  def create
+  end
+
+  def 
 end

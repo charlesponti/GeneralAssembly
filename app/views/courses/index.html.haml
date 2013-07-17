@@ -9,16 +9,14 @@
     %th Description
     %th Price
     %th Teacher
-    %th Course image
     %th
 
   - @courses.each do |course|
     %tr.center-text
       %td= link_to course.name, course
-      %td= course.description
+      %td= "#{course.description[0..10]}..."
       %td= course.price
       %td= course.teacher.name
-      %td= course.course_image
       - if can? :manage, :all
         %td
           = link_to 'Edit', edit_course_path(course), class:'tiny button'

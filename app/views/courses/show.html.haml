@@ -20,14 +20,4 @@
 
 = render 'schedule', schedules: @course.schedules, title: 'Schedule'
 
-- if current_user && (@course.teacher_id == current_user.id) || (can? :manage, :all)
-  = render 'students'
-
-%p.center-text
-  %br
-  %br
-  - if !(@course.full?) && current_user && current_user.can_add_course(@course)
-    = link_to 'Sign Up', "/signup/#{@course.id}", class:'button'
-  - else
-    = link_to 'Apply', '/apply', class:'button'
-  = link_to 'Back', courses_path, class:'button'
+= render 'conditionals'

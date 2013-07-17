@@ -1,7 +1,7 @@
 %h2.center-text= @user.name
 
 %p.center-text
-  = image_tag @user.user_image, style:'height:200px;width:250px; margin:auto'
+  = image_tag @user.user_image
 
 %p.center-text
   %b Dob:
@@ -28,5 +28,5 @@
 
 %p.center-text
   = link_to 'Edit', edit_user_path(@user), class:'button'
-  = link_to 'Back', users_path, class:'button'
+  = link_to 'Back', "/#{@user.role}s", class:'button'
 

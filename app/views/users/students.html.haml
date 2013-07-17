@@ -8,7 +8,6 @@
     %th Name
     %th Dob
     %th Address
-    %th Student image
     %th Balance
     %th
 
@@ -17,7 +16,6 @@
       %td= link_to student.name, student
       %td= student.dob
       %td= student.address
-      %td= student.user_image
       %td= student.balance
       %td
         = link_to 'Edit', edit_user_path(student), class:'tiny button'
