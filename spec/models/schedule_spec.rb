@@ -12,7 +12,7 @@ describe Schedule do
   end
   describe '#initialize' do
     it 'should set start_date' do
-     @schedule.start_date.should eq 'Tue, 01 Jan 2013'
+     @schedule.start_date.strftime('%Y-%m-%d').should eq '2013-01-01'
     end
   end
 end
