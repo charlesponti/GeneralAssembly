@@ -21,7 +21,7 @@ class Course < ActiveRecord::Base
 
   def dates
     schedule = self.schedules.first
-    "#{schedule.start_date.strftime('%B %-d %Y')} to #{schedule.end_date.strftime('%B %-d %Y')}"
+    "#{schedule.start_date.strftime('%B %-d, %Y')} to #{schedule.end_date.strftime('%B %-d, %Y')}"
   end
   
   def times_on day # Returns array of TimeSlot objects on specified day of week
@@ -33,12 +33,12 @@ class Course < ActiveRecord::Base
   end
 
   def remove_seats seats
-    seats -= 1
+    self.seats -= seats
     self.save
   end
 
   def add_seats seats
-    seats += 1
+    self.seats += seats
     self.save
   end
 

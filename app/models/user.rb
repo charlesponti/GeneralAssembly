@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base 
   has_secure_password
+  before_create :set_initial_balance
 
   has_many :students_courses
   has_many :courses, through: :students_courses
@@ -11,6 +12,9 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :email, :address, :bio, :username
 
   mount_uploader :user_image, UserImageUploader
+  def set_initial_balance
+    self.balance = 0
+  end
   
   def teaching
     Course.where(teacher_id: self.id)
