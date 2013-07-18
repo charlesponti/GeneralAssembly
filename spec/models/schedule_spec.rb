@@ -15,4 +15,14 @@ describe Schedule do
      @schedule.start_date.strftime('%Y-%m-%d').should eq '2013-01-01'
     end
   end
+  describe '#slotcode' do
+    it 'should return the time_slot slotcode of the schedule' do
+      @schedule.slotcode.should eq 'M1'
+    end
+  end
+  describe '#print_times' do
+    it 'should print times of schedule' do
+      @schedule.print_times.should eq ' 9:00 - 12:00'
+    end
+  end
 end
