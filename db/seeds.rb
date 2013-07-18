@@ -19,3 +19,7 @@
 # {start_time: '13:00', end_time: '17:00', day: 'Friday', slotcode: 'F2' },
 # {start_time: '19:00', end_time: '20:30', day: 'Friday', slotcode: 'F3' },
 # ])
+
+# Course.create([
+# {name: 'Web Development Immersive'}
+# ])

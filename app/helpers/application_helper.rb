@@ -11,7 +11,6 @@ module ApplicationHelper
   
   def render_schedule_for course, title
     render 'courses/schedule', schedules: course.schedules, title: title, dates: course.dates
-    # render_schedule_for course, course.name
   end
 
 end

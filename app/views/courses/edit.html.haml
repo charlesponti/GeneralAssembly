@@ -1,6 +1,7 @@
-%p.center-text
-  %h1 Editing course
-  = link_to 'Show', @course, class:'tiny button'
-  = link_to 'Back', courses_path, class:'tiny button'
+%h1.center-text Editing course
 
 = render 'form'
+
+%p.center-text
+  = link_to 'Show', @course, class:'tiny button'
+  = link_to 'Back', courses_path, class:'tiny button'

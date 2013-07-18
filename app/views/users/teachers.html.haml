@@ -8,12 +8,11 @@
       = image_tag teacher.user_image, style:'border-radius:100%; height: 50%;'
       
     - if can? :manage, :all
-      %td
+      %p.center-text
         = link_to 'Edit', edit_user_path(teacher), class:'tiny button'
         = link_to 'Destroy', teacher, :method => :delete, :data => { :confirm => 'Are you sure?' }, class:'tiny button'
   
 
 - if can? :manage, :all
-  %tr
-    %td.center-text{colspan:2}
-      = link_to 'New Teacher', new_user_path, class:'button'
+  %p.center-text
+    = link_to 'New Teacher', new_user_path, class:'button'
