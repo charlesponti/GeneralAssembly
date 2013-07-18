@@ -12,12 +12,15 @@
 
 
 %h3.center-text Teacher:
-%p.center-text= @course.teacher.name
+%p.center-text
+  = image_tag @course.teacher.user_image.thumb, style:'border-radius:100%'
+  %br
+  = @course.teacher.name
 
 
 %h3.center-text Price:
 %p.center-text= number_to_currency @course.price
 
-= render 'schedule', schedules: @course.schedules, title: 'Schedule', course: @course, dates: @course.dates
+= render_schedule_for @course, 'Schedule'
 
 = render 'conditionals', course: @course

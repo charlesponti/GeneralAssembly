@@ -29,7 +29,7 @@ class Course < ActiveRecord::Base
   end
 
   def slotcodes # Returns array of TimeSlot slotcodes for course
-    self.schedules.map(&:slotcode)
+    TimeSlot.joins(:schedules).where('schedules.course_id = ?', self.id).map(&:slotcode)
   end
 
   def remove_seats seats

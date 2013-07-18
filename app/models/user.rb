@@ -48,11 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def can_add_course course
-    if !(self.current_schedule.length == (self.current_schedule - course.slotcodes).length)
-      errors.add(:courses, "you can't subscribe for that course")
-    else
-      true
-    end
+    !(self.current_schedule & course.slotcodes).any?
   end
 
 end

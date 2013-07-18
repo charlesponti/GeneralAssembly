@@ -1,4 +1,4 @@
-%h2.center-text Account Dashboard
+%h1.center-text Account Dashboard
 
 - if @user.balance > 0
   %p.center-text
@@ -9,9 +9,9 @@
 
 - if @courses && @courses.count > 0
   .my_schedule.center-text
-    %h2 Course Schedule
+    %h2.bottom-border Course Schedule
     - @courses.each do |course|
-      = render 'courses/schedule', schedules: course.schedules, title: course.name, dates: course.dates
+      = render_schedule_for course, course.name
 
       %p.center-text= link_to 'Drop Course', "courses/#{course.id}/drop", class:'tiny button'
       %br
@@ -19,9 +19,9 @@
 
 - if @teachings && @teachings.count > 0
   .my_schedule.center-text
-    %h2 Teaching Schedule
+    %h2.bottom-border Teaching Schedule
     - @teachings.each do |course|
-      = render 'courses/schedule', schedules: course.schedules, title: course.name
+      = render_schedule_for course, course.name
 
       - if current_user.role == 'student'
         %p.center-text= link_to 'Drop Course', "courses/#{x.id}/drop", class:'tiny button'
@@ -30,5 +30,5 @@
 
 %p.center-text
   = link_to 'Edit Account', edit_user_path(@user), class:'button'
-  = link_to 'Back', "/#{@user.role}s", class:'button'
+  / = link_to 'Back', "/#{@user.role}s", class:'button'
 

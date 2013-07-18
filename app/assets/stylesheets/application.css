@@ -34,8 +34,8 @@
   padding-right: 10px;
 }
 
-.day-field {
-  background: red;
-  color: white;
-  border-bottom: 2px solid black;
+.bottom-border {
+  border-bottom: 3px solid #ccc;
+  width: 75%;
+  margin: 0 auto 2% auto;
 }

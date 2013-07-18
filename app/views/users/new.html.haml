@@ -1,3 +1,7 @@
-%h1.center-text Application
+%h1.center-text 
+  - if !current_user 
+    Application
+  - else
+    New User
 
 = render 'form'

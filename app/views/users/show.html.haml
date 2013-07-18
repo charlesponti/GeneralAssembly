@@ -21,8 +21,8 @@
     = @user.role
 
 - if @courses && @courses.count > 0
-  - @courses.each do |x|
-    = render 'courses/schedule', schedules: x.schedules, title: x.name
+  - @courses.each do |course|
+    = render_schedule_for course, course.name
     %br
     %br
 
