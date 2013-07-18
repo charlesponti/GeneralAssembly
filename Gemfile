@@ -37,6 +37,8 @@ gem 'rmagick'
 #--- Search Data
 gem "ransack", github: "ernie/ransack", branch: "rails-4"
 
+gem 'rails_12factor', group: :production
+
 group :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
