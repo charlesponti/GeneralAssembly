@@ -24,7 +24,7 @@
 %body
   = render 'layouts/navigation'
   
-  .row
+  .row{style:'width:1000px'}
     .large-12
       - if flash
         %p#notice.flash= flash[:notice] || flash[:error]
