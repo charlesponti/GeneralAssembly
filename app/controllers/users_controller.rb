@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource only: [:index, :create, :destroy]
+  load_and_authorize_resource only: [:index, :destroy]
 
   def index
     @users = User.all
@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :dob, :address, :email,  :bio, :user_image, :role,
-       :username, :password, :password_confirmation)
+      params.require(:user).permit(:name, :dob, :address, :email,  :bio, :user_image, :role, :username, :password, :password_confirmation)
     end
+
 end

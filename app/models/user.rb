@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base 
   has_secure_password
-  after_create { self.balance = 0 }
 
   has_many :students_courses
   has_many :courses, through: :students_courses
@@ -16,11 +15,11 @@ class User < ActiveRecord::Base
   def teaching
     Course.where(teacher_id: self.id)
   end
-  
+
   def current_schedule
     case self.role
-      when 'teacher' then self.teaching.map(&:slotcodes).flatten
-      else self.courses.map(&:slotcodes).flatten
+      when 'teacher' then TimeSlot.joins(:schedules).where('schedules.course_id in (?)', self.teaching.map(&:id)).map(&:slotcode)
+      else TimeSlot.joins(:schedules).where('schedules.course_id in (?)', self.courses.map(&:id)).map(&:slotcode)
     end
   end
   

@@ -5,7 +5,7 @@
 
 
 %h3.center-text Dates:
-%p.center-text= "#{@course.schedules.first.start_date.strftime('%B %-d %Y')} to #{@course.schedules.first.end_date.strftime('%B %-d %Y')}"
+%p.center-text= @course.dates
 
 %h3.center-text Description:
 %p.center-text= @course.description
@@ -18,6 +18,6 @@
 %h3.center-text Price:
 %p.center-text= number_to_currency @course.price
 
-= render 'schedule', schedules: @course.schedules, title: 'Schedule', course: @course
+= render 'schedule', schedules: @course.schedules, title: 'Schedule', course: @course, dates: @course.dates
 
 = render 'conditionals', course: @course

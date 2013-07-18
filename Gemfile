@@ -7,7 +7,7 @@ gem 'rails', '4.0.0'
 gem 'pg'
 
 #--- Server
-gem "puma"
+#gem "puma"
 
 #--- HTML, CSS, & JS
 gem 'haml-rails'

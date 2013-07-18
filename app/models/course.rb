@@ -18,6 +18,11 @@ class Course < ActiveRecord::Base
   def students
     self.users
   end
+
+  def dates
+    schedule = self.schedules.first
+    "#{schedule.start_date.strftime('%B %-d %Y')} to #{schedule.end_date.strftime('%B %-d %Y')}"
+  end
   
   def times_on day # Returns array of TimeSlot objects on specified day of week
     self.time_slots.where(day: day)

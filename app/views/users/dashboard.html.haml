@@ -11,7 +11,7 @@
   .my_schedule.center-text
     %h2 Course Schedule
     - @courses.each do |course|
-      = render 'courses/schedule', schedules: course.schedules, title: course.name
+      = render 'courses/schedule', schedules: course.schedules, title: course.name, dates: course.dates
 
       %p.center-text= link_to 'Drop Course', "courses/#{course.id}/drop", class:'tiny button'
       %br
