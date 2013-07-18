@@ -1,12 +1,6 @@
 - if current_user && (course.teacher_id == current_user.id) || (can? :manage, :all)
   = render 'students'
 
-- unless !(current_user.can_add_course(course))
-  %p.center-text 
-    %br
-    %br
-    You cannot fit this course in your schedule
-
 %p.center-text
   %br
   %br

@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base 
   has_secure_password
+  after_create { self.balance = 0 }
 
   has_many :students_courses
   has_many :courses, through: :students_courses
@@ -17,32 +18,42 @@ class User < ActiveRecord::Base
   end
   
   def current_schedule
-    self.courses.map(&:slotcodes).flatten
+    case self.role
+      when 'teacher' then self.teaching.map(&:slotcodes).flatten
+      else self.courses.map(&:slotcodes).flatten
+    end
   end
   
   def booked? course
     self.courses.include? course
   end
 
-  def update_balance operator,  how_much
-    balance.send(operator, how_much)
+  def update_balance operator, how_much
+    self.balance = case operator
+      when 'add' then self.balance += how_much
+      when 'subtract' then self.balance -= how_much
+    end
     self
   end
-
+  
   def add_course course
       self.courses << course
-      self.update_balance(:+ , course.price).save
+      self.update_balance('add', course.price).save
       course.remove_seats 1
   end
 
   def drop_course course
       self.courses.delete course
-      self.update_balance(:- , course.price).save
+      self.update_balance('subtract', course.price).save
       course.add_seats 1
   end
 
   def can_add_course course
-    errors.add(:courses, "you can't subscribe for that course")  unless self.current_schedule.length == (self.current_schedule - course.slotcodes).length
+    if !(self.current_schedule.length == (self.current_schedule - course.slotcodes).length)
+      errors.add(:courses, "you can't subscribe for that course")
+    else
+      true
+    end
   end
 
 end

@@ -17,10 +17,8 @@ GeneralAssembly::Application.routes.draw do
 
   resources :courses
     get '/signup/:id', to: 'courses#sign_up'
-    get '/course/:id/drop', to: 'courses#drop_student'
+    get '/courses/:id/drop', to: 'courses#drop_student'
 
   resources :rooms
-
-  get '/schedules', to: 'schedules#index'
 
 end

@@ -41,5 +41,4 @@ class Course < ActiveRecord::Base
     self.seats == 0
   end
 
-
 end

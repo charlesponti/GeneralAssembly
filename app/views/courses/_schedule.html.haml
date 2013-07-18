@@ -16,3 +16,4 @@
         - (schedules.select { |x| x.time_slot.day == weekday }).each do |x|
           = "#{x.time_slot.print_times} #{x.room.name}"
           %br
+          %br

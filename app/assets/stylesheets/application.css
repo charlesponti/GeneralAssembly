@@ -33,3 +33,9 @@
   width: 150px;
   padding-right: 10px;
 }
+
+.day-field {
+  background: red;
+  color: white;
+  border-bottom: 2px solid black;
+}

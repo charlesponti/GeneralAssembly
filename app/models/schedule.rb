@@ -18,7 +18,7 @@ class Schedule < ActiveRecord::Base
   
   private
   def room_available
-    if Schedule.where(['
+    query = Schedule.where(['
       (room_id=:room_id AND time_slot_id=:time_slot) and
       (
         (start_date < :start_date AND end_date > :end_date)
@@ -27,8 +27,8 @@ class Schedule < ActiveRecord::Base
         OR (start_date > :end_date AND end_date < :start_date)
       )', 
       room_id: room_id, start_date: start_date, end_date: end_date, 
-      time_slot: time_slot_id]).count > 0
-      binding.pry
+      time_slot: time_slot_id])
+    if query.count > 0
       errors.add(:base, 'The dates you have selected are overlapping with other schedules.')
     end
   end

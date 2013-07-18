@@ -55,7 +55,10 @@ class UsersController < ApplicationController
 
   def dashboard
     @user = User.find(current_user.id)
-    set_courses
+    @courses = @user.courses
+    if current_user.role == 'teacher'
+      @teachings = @user.teaching
+    end
   end
 
   def students
