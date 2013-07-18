@@ -1,3 +1,5 @@
+require 'spec_helper'
+
 describe TimeSlot do
   before :each do
     @time_slot = TimeSlot.create!(start_time:'9:00',end_time:'12:00',day:'Monday',slotcode:'M1')
