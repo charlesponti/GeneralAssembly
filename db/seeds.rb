@@ -20,7 +20,7 @@ f2 = TimeSlot.create(start_time: '13:00', end_time: '17:00', day: 'Friday', slot
 f3 = TimeSlot.create(start_time: '19:00', end_time: '20:30', day: 'Friday', slotcode: 'F3')
 
 #--------- Rooms
-room1 = Room.create{name: "Room 1", capacity: 50)
+room1 = Room.create(name: "Room 1", capacity: 50)
 room2 = Room.create(name: "Room 2", capacity: 30)
 
 #------ Users
