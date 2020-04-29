@@ -31,7 +31,7 @@ gem 'cancan'
 
 #--- File Management
 gem "fog", "~> 1.3.1"
-gem 'carrierwave'
+gem 'carrierwave', '>= 0.9.0'
 gem 'rmagick'
 
 #--- Search Data
@@ -47,7 +47,7 @@ group :test do
 end
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 0.4.0', require: false
 end
 
 group :development do
