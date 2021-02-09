@@ -31,7 +31,7 @@ gem 'cancan'
 
 #--- File Management
 gem "fog", "~> 1.3.1"
-gem 'carrierwave'
+gem 'carrierwave', '>= 1.3.2'
 gem 'rmagick'
 
 #--- Search Data
