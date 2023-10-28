@@ -30,7 +30,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
 #--- File Management
-gem "fog", "~> 1.3.1"
+gem "fog", "~> 1.14.0"
 gem 'carrierwave'
 gem 'rmagick'
 
@@ -43,7 +43,7 @@ group :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'capybara' 
+  gem 'capybara' , '>= 2.1.0'
 end
 
 group :doc do
