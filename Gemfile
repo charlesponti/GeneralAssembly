@@ -14,7 +14,7 @@ gem 'haml-rails', '>= 0.5.3'
 gem 'sass-rails', '~> 5.0.8'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2.2'
-gem 'jquery-rails', '>= 4.0.1'
+gem 'jquery-rails', '>= 4.4.0'
 gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
 gem 'zurb-foundation'
 
