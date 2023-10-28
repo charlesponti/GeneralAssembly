@@ -10,14 +10,13 @@ gem 'pg'
 #gem "puma"
 
 #--- HTML, CSS, & JS
-
-  gem 'haml-rails', '>= 0.5.3'
-  gem 'sass-rails', '~> 5.0.8'
-  gem 'uglifier', '>= 1.3.0'
-  gem 'coffee-rails', '~> 4.2.2'
-  gem 'jquery-rails', '>= 4.0.1'
-  gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
-  gem 'zurb-foundation'
+gem 'haml-rails', '>= 0.5.3'
+gem 'sass-rails', '~> 5.0.8'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.2.2'
+gem 'jquery-rails', '>= 4.0.1'
+gem 'compass-rails', github: "milgner/compass-rails", branch: "rails4"
+gem 'zurb-foundation'
 
 gem 'turbolinks', '>= 1.3.0'
 
@@ -30,7 +29,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
 #--- File Management
-gem "fog", "~> 1.3.1"
+gem "fog", "~> 1.14.0"
 gem 'carrierwave'
 gem 'rmagick'
 
@@ -43,11 +42,11 @@ group :test do
   gem 'rspec-rails', '>= 2.14.0'
   gem 'database_cleaner'
   gem 'shoulda'
-  gem 'capybara' 
+  gem 'capybara' , '>= 2.1.0'
 end
 
 group :doc do
-  gem 'sdoc', require: false
+  gem 'sdoc', '>= 1.0.0', require: false
 end
 
 group :development do
