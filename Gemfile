@@ -29,8 +29,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'cancan'
 
 #--- File Management
-gem "fog", "~> 1.14.0"
-gem 'carrierwave'
+gem "fog", "~> 1.3.1"
+gem 'carrierwave', '>= 1.3.2'
 gem 'rmagick'
 
 #--- Search Data
