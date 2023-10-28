@@ -20,7 +20,7 @@ gem 'zurb-foundation'
 
 gem 'turbolinks', '>= 1.3.0'
 
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder', '~> 1.4', '>= 1.4.2'
 
 gem 'nested_form'
 
@@ -41,8 +41,8 @@ gem 'rails_12factor', group: :production
 group :test do
   gem 'rspec-rails', '>= 2.14.0'
   gem 'database_cleaner'
-  gem 'shoulda'
-  gem 'capybara' , '>= 2.1.0'
+  gem 'shoulda', '>= 3.5.0'
+  gem 'capybara' 
 end
 
 group :doc do
